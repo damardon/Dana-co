@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DANA&CO — IA, automatización y liderazgo tecnológico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15110D;--ink-soft:#3a342c;--paper:#F4EFE7;--paper-2:#EAE3D6;
+    --accent:#FF5126;--accent-deep:#D63B14;--line:rgba(21,17,13,.14);
+    --card:#FBF8F2;--maxw:1180px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Archivo',sans-serif;background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3,h4{font-family:'Fraunces',serif;line-height:1.04;letter-spacing:-.02em;font-weight:600}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  a{color:inherit;text-decoration:none}
+  .accent{color:var(--accent)}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:200;background:rgba(244,239,231,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.35rem;letter-spacing:-.03em;cursor:pointer}
+  .logo span{color:var(--accent)}
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{font-size:.86rem;font-weight:500;color:var(--ink-soft);transition:color .2s;cursor:pointer}
+  .nav-links a:hover,.nav-links a.active{color:var(--accent)}
+  .nav-cta{background:var(--ink);color:var(--paper)!important;padding:11px 20px;border-radius:50px;font-weight:600}
+  .nav-cta:hover{background:var(--accent)!important}
+  .dd{position:relative}
+  .dd-menu{position:absolute;top:130%;left:50%;transform:translateX(-50%) translateY(8px);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px;min-width:230px;opacity:0;visibility:hidden;transition:.22s;box-shadow:0 18px 40px rgba(21,17,13,.13)}
+  .dd:hover .dd-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+  .dd-menu a{display:block;padding:11px 14px;border-radius:9px;font-size:.9rem;color:var(--ink)}
+  .dd-menu a:hover{background:var(--paper-2);color:var(--accent)}
+  .dd-menu a b{display:block;font-family:'Fraunces',serif;font-size:.96rem}
+  .dd-menu a span{font-size:.76rem;color:var(--ink-soft)}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+  .burger span{width:24px;height:2px;background:var(--ink);transition:.3s}
+
+  /* PAGES */
+  .page{display:none;animation:fade .5s ease}
+  .page.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  .btn{padding:15px 28px;border-radius:50px;font-weight:600;font-size:.95rem;cursor:pointer;transition:.22s;border:1.5px solid transparent;display:inline-flex;align-items:center;gap:8px}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:var(--accent-deep);transform:translateY(-2px);box-shadow:0 12px 28px rgba(255,81,38,.28)}
+  .btn-ghost{border-color:var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+  .btn-light{background:var(--paper);color:var(--ink)}
+  .btn-light:hover{background:#fff;transform:translateY(-2px)}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:20px}
+  .eyebrow::before{content:"";width:30px;height:2px;background:var(--accent)}
+
+  section{padding:78px 0}
+  .sec-head{max-width:700px;margin-bottom:46px}
+  .sec-head h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:16px}
+  .sec-head p{font-size:1.1rem;color:var(--ink-soft)}
+
+  /* HERO */
+  .hero{padding:88px 0 64px}
+  .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:50px;align-items:center}
+  .hero h1{font-size:clamp(2.6rem,5.8vw,4.4rem);font-weight:600;margin-bottom:24px}
+  .hero h1 em{font-style:italic;color:var(--accent);font-weight:400}
+  .hero p{font-size:1.16rem;color:var(--ink-soft);max-width:560px;margin-bottom:32px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .portrait-card{background:var(--ink);color:var(--paper);border-radius:24px;padding:38px 32px;position:relative;overflow:hidden}
+  .portrait-card::before{content:"";position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:var(--accent);border-radius:50%}
+  .portrait-card .num{font-family:'Fraunces',serif;font-size:4rem;font-weight:900;line-height:1;position:relative}
+  .portrait-card .lbl{font-size:.9rem;opacity:.8;position:relative;margin-bottom:28px}
+  .portrait-mini{display:flex;justify-content:space-between;border-top:1px solid rgba(244,239,231,.2);padding-top:18px;position:relative}
+  .portrait-mini div b{font-family:'Fraunces',serif;font-size:1.45rem;display:block}
+  .portrait-mini div span{font-size:.72rem;opacity:.7}
+
+  .strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 0;margin-top:46px}
+  .strip-in{display:flex;align-items:center;gap:34px;flex-wrap:wrap;justify-content:center}
+  .strip-in .t{font-size:.74rem;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-soft);font-weight:700}
+  .strip-in .i{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:500}
+
+  /* BRAND BLOCKS on home */
+  .brandrow{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:22px}
+  .brandcard{border-radius:24px;padding:40px 36px;position:relative;overflow:hidden;cursor:pointer;transition:.25s;border:1px solid var(--line);background:var(--card)}
+  .brandcard:hover{transform:translateY(-5px);box-shadow:0 20px 44px rgba(21,17,13,.12)}
+  .brandcard.dark{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .brandcard.studio{background:linear-gradient(135deg,var(--accent),var(--accent-deep));color:#fff;border:none}
+  .brandcard .tag{font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.9;margin-bottom:14px;display:inline-block}
+  .brandcard h3{font-size:1.9rem;margin-bottom:12px}
+  .brandcard p{font-size:1rem;opacity:.86;margin-bottom:20px;max-width:440px}
+  .brandcard .go{font-weight:700;font-size:.9rem;display:inline-flex;gap:7px;align-items:center}
+  .brandcard.full{grid-column:1/-1}
+  .brandcard.studio::after,.brandcard.dark::after{content:"";position:absolute;bottom:-90px;right:-50px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.1)}
+
+  /* generic cards */
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px 28px;transition:.25s;position:relative}
+  .card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(21,17,13,.1);border-color:var(--ink)}
+  .card .n{font-family:'Fraunces',serif;font-size:.9rem;font-weight:700;color:var(--accent);margin-bottom:12px}
+  .card h3{font-size:1.35rem;margin-bottom:10px}
+  .card p{font-size:.94rem;color:var(--ink-soft);margin-bottom:14px}
+  .card ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+  .card li{font-size:.86rem;padding-left:20px;position:relative;color:var(--ink-soft)}
+  .card li::before{content:"→";position:absolute;left:0;color:var(--accent);font-weight:700}
+
+  /* page hero (interior) */
+  .phero{padding:70px 0 30px}
+  .phero h1{font-size:clamp(2.3rem,5vw,3.8rem);margin-bottom:18px;max-width:820px}
+  .phero h1 em{font-style:italic;color:var(--accent);font-weight:400}
+  .phero .sub{font-size:1.2rem;color:var(--ink-soft);max-width:680px}
+
+  /* WHO FOR */
+  .whofor{background:var(--paper-2);border-radius:24px;padding:42px 40px;margin:30px 0}
+  .whofor h3{font-size:1.5rem;margin-bottom:20px}
+  .who-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .who{display:flex;gap:12px;align-items:flex-start;font-size:.96rem}
+  .who .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);margin-top:8px;flex-shrink:0}
+
+  /* FLOW */
+  .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:30px 0}
+  .flow-step{text-align:center;padding:20px 12px;background:var(--card);border:1px solid var(--line);border-radius:16px}
+  .flow-step .s{width:34px;height:34px;background:var(--ink);color:var(--paper);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;margin:0 auto 12px;font-family:'Fraunces',serif}
+  .flow-step p{font-size:.84rem;color:var(--ink-soft);font-weight:500}
+
+  /* PACKS */
+  .packs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .pack{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:32px 28px;transition:.25s;display:flex;flex-direction:column}
+  .pack:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(21,17,13,.1)}
+  .pack.featured{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .pack.featured li,.pack.featured .pack-price{color:rgba(244,239,231,.82)}
+  .pack-tag{display:inline-block;font-size:.64rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+  .pack.featured .pack-tag{background:var(--accent);color:#fff;padding:5px 12px;border-radius:50px}
+  .pack h3{font-size:1.4rem;margin-bottom:6px}
+  .pack .for{font-size:.85rem;color:var(--ink-soft);margin-bottom:18px;min-height:54px}
+  .pack.featured .for{color:rgba(244,239,231,.7)}
+  .pack ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px;flex:1}
+  .pack li{font-size:.88rem;padding-left:22px;position:relative;color:var(--ink-soft)}
+  .pack li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:800}
+  .pack-price{border-top:1px solid var(--line);padding-top:16px;font-size:.82rem;color:var(--ink-soft)}
+  .pack.featured .pack-price{border-color:rgba(244,239,231,.2)}
+  .pack-price b{font-family:'Fraunces',serif;font-size:1.4rem;color:var(--ink);display:block;font-weight:700}
+  .pack.featured .pack-price b{color:var(--paper)}
+
+  .sprint{background:var(--ink);color:var(--paper);border-radius:24px;padding:46px 42px;margin-top:22px;display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+  .sprint::after{content:"";position:absolute;bottom:-100px;left:-60px;width:280px;height:280px;background:radial-gradient(circle,rgba(255,81,38,.32),transparent 70%)}
+  .sprint .eyebrow{color:var(--accent)}.sprint .eyebrow::before{background:var(--accent)}
+  .sprint h3{font-size:2rem;margin-bottom:14px;position:relative}
+  .sprint p{opacity:.85;position:relative;margin-bottom:18px}
+  .sprint ul{list-style:none;display:flex;flex-direction:column;gap:9px;position:relative}
+  .sprint li{font-size:.92rem;padding-left:22px;position:relative;opacity:.9}
+  .sprint li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:800}
+  .sprint-box{background:rgba(244,239,231,.06);border:1px solid rgba(244,239,231,.16);border-radius:18px;padding:30px;text-align:center;position:relative}
+  .sprint-box .big{font-family:'Fraunces',serif;font-size:3rem;font-weight:900}
+  .sprint-box .big small{font-size:1.1rem;opacity:.7}
+
+  /* STAR cto */
+  .star{background:var(--ink);color:var(--paper);border-radius:28px;padding:56px 48px;position:relative;overflow:hidden}
+  .star::after{content:"";position:absolute;bottom:-120px;left:-80px;width:340px;height:340px;background:radial-gradient(circle,rgba(255,81,38,.32),transparent 70%)}
+  .star .badge{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;border-radius:50px;margin-bottom:22px}
+  .star h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:18px;position:relative}
+  .star h2 em{font-style:italic;color:var(--accent);font-weight:400}
+  .star .lead{font-size:1.14rem;opacity:.86;max-width:640px;margin-bottom:38px;position:relative}
+  .uc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;position:relative}
+  .uc{background:rgba(244,239,231,.06);border:1px solid rgba(244,239,231,.13);border-radius:14px;padding:20px 22px;transition:.25s}
+  .uc:hover{background:rgba(255,81,38,.1);border-color:var(--accent)}
+  .uc h4{font-size:1.04rem;margin-bottom:6px}.uc p{font-size:.9rem;opacity:.76}
+
+  /* CASES */
+  .case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .case{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px;transition:.25s;cursor:pointer}
+  .case:hover{border-color:var(--accent);transform:translateY(-4px)}
+  .case .cat{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--accent-deep);font-weight:700;margin-bottom:12px}
+  .case h3{font-size:1.35rem;margin-bottom:10px}
+  .case p{font-size:.9rem;color:var(--ink-soft);margin-bottom:14px}
+  .case .role{font-size:.78rem;font-weight:700;color:var(--ink);border-top:1px solid var(--line);padding-top:12px}
+
+  /* CASE DETAIL */
+  .case-detail{max-width:820px;margin:0 auto}
+  .case-detail .meta{font-size:.82rem;text-transform:uppercase;letter-spacing:.12em;color:var(--accent-deep);font-weight:700;margin-bottom:14px}
+  .case-detail h1{font-size:clamp(2.2rem,4.5vw,3.2rem);margin-bottom:14px}
+  .case-detail .client{font-size:1.15rem;color:var(--ink-soft);margin-bottom:36px;font-family:'Fraunces',serif;font-style:italic}
+  .case-detail h3{font-size:1.4rem;margin:34px 0 12px;color:var(--accent-deep)}
+  .case-detail p{font-size:1.04rem;color:var(--ink-soft);margin-bottom:14px}
+  .case-detail .tag-list{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+  .case-detail .tg{background:var(--paper-2);border-radius:50px;padding:6px 14px;font-size:.8rem;font-weight:600}
+  .pillars{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+  .pillar{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .pillar b{font-family:'Fraunces',serif;font-size:1.05rem;display:block;margin-bottom:6px}
+  .pillar span{font-size:.9rem;color:var(--ink-soft)}
+  .back{font-size:.86rem;font-weight:600;color:var(--accent);cursor:pointer;display:inline-flex;gap:6px;margin-bottom:24px}
+
+  /* ABOUT / CV */
+  .cv-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:46px;align-items:start}
+  .cv-side{position:sticky;top:90px}
+  .cv-card{background:var(--ink);color:var(--paper);border-radius:24px;padding:38px 32px}
+  .cv-card .big{font-family:'Fraunces',serif;font-size:4rem;font-weight:900;line-height:.9}
+  .cv-card .big small{font-size:1.6rem}
+  .cv-card h3{font-size:1.5rem;margin:16px 0 6px}
+  .cv-card .r{font-size:.92rem;opacity:.8;margin-bottom:24px}
+  .cv-card .contact{border-top:1px solid rgba(244,239,231,.2);padding-top:18px;font-size:.88rem;opacity:.85;display:flex;flex-direction:column;gap:8px}
+  .cv-block{margin-bottom:34px}
+  .cv-block h3{font-size:1.4rem;margin-bottom:16px}
+  .cv-item{border-left:2px solid var(--line);padding-left:20px;margin-bottom:22px;position:relative}
+  .cv-item::before{content:"";position:absolute;left:-6px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+  .cv-item .role{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600}
+  .cv-item .org{font-size:.9rem;color:var(--accent-deep);font-weight:600;margin-bottom:6px}
+  .cv-item p{font-size:.94rem;color:var(--ink-soft)}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:8px}
+  .skill-tags span{background:var(--paper-2);border-radius:50px;padding:7px 15px;font-size:.84rem;font-weight:600}
+  .note{background:#FFF4E8;border:1px dashed var(--accent);border-radius:12px;padding:14px 18px;font-size:.86rem;color:var(--accent-deep);margin-top:10px}
+
+  /* CTA */
+  .final{text-align:center;padding:90px 0}
+  .final h2{font-size:clamp(2.2rem,5vw,3.6rem);margin-bottom:20px;max-width:820px;margin-inline:auto}
+  .final h2 em{font-style:italic;color:var(--accent);font-weight:400}
+  .final p{font-size:1.12rem;color:var(--ink-soft);margin-bottom:30px}
+
+  /* FOOTER */
+  footer{background:var(--ink);color:var(--paper);padding:50px 0 28px}
+  .foot-in{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:30px}
+  .foot-logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.5rem}
+  .foot-logo span{color:var(--accent)}
+  .foot-cols{display:flex;gap:54px;flex-wrap:wrap}
+  .foot-col h5{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;opacity:.6;margin-bottom:12px;font-weight:700}
+  .foot-col a{display:block;font-size:.9rem;opacity:.85;margin-bottom:8px;cursor:pointer}
+  .foot-col a:hover{opacity:1;color:var(--accent)}
+  .foot-bottom{border-top:1px solid rgba(244,239,231,.15);margin-top:36px;padding-top:20px;font-size:.82rem;opacity:.6;text-align:center}
+
+  @media(max-width:900px){
+    .hero-grid,.cv-grid,.sprint,.brandrow{grid-template-columns:1fr;gap:30px}
+    .cards3,.case-grid,.packs,.uc-grid,.who-grid,.pillars{grid-template-columns:1fr}
+    .flow{grid-template-columns:1fr 1fr}
+    .cv-side{position:static}
+    .nav-links{position:fixed;top:70px;left:0;right:0;background:var(--paper);flex-direction:column;padding:24px;gap:16px;border-bottom:1px solid var(--line);transform:translateY(-150%);transition:.35s;align-items:flex-start;max-height:85vh;overflow:auto}
+    .nav-links.open{transform:none}
+    .burger{display:flex}
+    .dd-menu{position:static;transform:none;opacity:1;visibility:visible;box-shadow:none;border:none;padding:0 0 0 14px;min-width:auto;background:none}
+    .star,.sprint{padding:36px 24px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <div class="logo" onclick="go('inicio')">DANA<span>&</span>CO</div>
+    <div class="nav-links" id="navlinks">
+      <a onclick="go('studio')">AI Automation Studio</a>
+      <a onclick="go('cto')">CTO as a Service</a>
+      <div class="dd">
+        <a>Servicios ▾</a>
+        <div class="dd-menu">
+          <a onclick="go('delivery')"><b>Dana Delivery</b><span>Entrega y rescate de proyectos</span></a>
+          <a onclick="go('tech')"><b>Dana Tech Solutions</b><span>Software factory + IoT</span></a>
+          <a onclick="go('audit')"><b>Dana Audit</b><span>AI Operations Audit</span></a>
+        </div>
+      </div>
+      <a onclick="go('casos')">Casos</a>
+      <a onclick="go('nosotros')">Nosotros</a>
+      <a onclick="go('contacto')" class="nav-cta">Agenda diagnóstico</a>
+    </div>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ============ INICIO ============ -->
+<div class="page active" id="inicio">
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Dana Mardones · Consultoría boutique</span>
+        <h1>IA y automatización con <em>criterio de ingeniería</em>.</h1>
+        <p>+15 años liderando proyectos tecnológicos en las industrias más exigentes — minería, fintech, energía, automotriz. Hoy llevo ese criterio a la IA y la automatización de tu negocio.</p>
+        <div class="hero-cta">
+          <a onclick="go('studio')" class="btn btn-primary">Ver AI Automation Studio →</a>
+          <a onclick="go('contacto')" class="btn btn-ghost">Agenda un diagnóstico</a>
+        </div>
+      </div>
+      <div>
+        <div class="portrait-card">
+          <div class="num">15<span class="accent">+</span></div>
+          <div class="lbl">años liderando tecnología en industrias críticas</div>
+          <div class="portrait-mini">
+            <div><b>E2E</b><span>del problema a producción</span></div>
+            <div><b>SAP·AWS</b><span>stacks enterprise</span></div>
+            <div><b>IA</b><span>integrada al ciclo</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="strip"><div class="wrap strip-in">
+      <span class="t">Experiencia comprobada en</span>
+      <span class="i">Minería</span><span class="i">Fintech</span><span class="i">Energía</span>
+      <span class="i">Automotriz</span><span class="i">Defensa</span><span class="i">Telecom</span><span class="i">Software</span>
+    </div></div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Cuatro formas de trabajar juntos</span>
+        <h2>Productos, no promesas.</h2>
+        <p>Cada submarca resuelve un problema distinto. Empieza por donde más te duele.</p>
+      </div>
+
+      <div class="brandrow">
+        <div class="brandcard studio" onclick="go('studio')">
+          <span class="tag">★ Lo más solicitado</span>
+          <h3>Dana AI Automation Studio</h3>
+          <p>IA que responde, califica y vende por ti. Bots de WhatsApp, agentes y automatizaciones que trabajan 24/7 sin contratar más gente.</p>
+          <span class="go">Ver productos y precios →</span>
+        </div>
+        <div class="brandcard dark" onclick="go('cto')">
+          <span class="tag">★ Producto estrella</span>
+          <h3>Dana CTO as a Service</h3>
+          <p>Tu liderazgo tecnológico senior sin el costo de un CTO interno. Estrategia de IA, arquitectura y decisiones que tu directorio te pide.</p>
+          <span class="go">Conocer más →</span>
+        </div>
+      </div>
+      <div class="brandrow">
+        <div class="brandcard" onclick="go('delivery')">
+          <span class="tag accent">Servicios</span>
+          <h3>Dana Delivery</h3>
+          <p>Construimos, rescatamos y gobernamos proyectos tecnológicos complejos. Una sola contraparte responsable de principio a fin.</p>
+          <span class="go" style="color:var(--accent)">Ver a quién va dirigido →</span>
+        </div>
+        <div class="brandcard" onclick="go('tech')">
+          <span class="tag accent">Servicios</span>
+          <h3>Dana Tech Solutions</h3>
+          <p>Software factory end-to-end e integración de hardware/IoT. De la idea al producto vivo en producción.</p>
+          <span class="go" style="color:var(--accent)">Conocer más →</span>
+        </div>
+      </div>
+      <div class="brandrow">
+        <div class="brandcard full" onclick="go('audit')" style="background:var(--paper-2)">
+          <span class="tag accent">Puerta de entrada</span>
+          <h3>Dana Audit — AI Operations Audit</h3>
+          <p>¿No sabes por dónde partir? En 2 semanas te entrego un diagnóstico de brechas tecnológicas, un roadmap de automatización con IA y una evaluación de tu gestión de proyectos.</p>
+          <span class="go" style="color:var(--accent)">Empezar por aquí →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">Casos de éxito</span><h2>Lo hemos resuelto en producción.</h2><p>Proyectos reales en industrias donde el error cuesta caro.</p></div>
+      <div class="case-grid">
+        <div class="case" onclick="go('caso-copec')"><div class="cat">Fintech · Defensa</div><h3>App COPEC — FF.AA.</h3><p>Módulo de gestión de combustible para las Fuerzas Armadas dentro de Muevo Empresas, integrado al core SAP.</p><div class="role">Directora de proyecto · Referente técnico E2E</div></div>
+        <div class="case" onclick="go('caso-derco')"><div class="cat">IoT · Automotriz</div><h3>Sensor Inteligente DERCO</h3><p>Plataforma de telemática y seguridad vehicular: IoT, cloud AWS, app móvil e integración con Carabineros.</p><div class="role">Project Manager E2E</div></div>
+        <div class="case" onclick="go('caso-codelco')"><div class="cat">Madurez · Minería</div><h3>OPM3 Codelco</h3><p>Evaluación de madurez organizacional sobre 105 facilitadores OPM3 en divisiones de la minera más grande del mundo.</p><div class="role">Líder técnico y metodológico</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final" style="padding-top:0">
+    <div class="wrap">
+      <h2>Tus dolores de cabeza son <em>nuestra especialidad</em>.</h2>
+      <p>Agenda un diagnóstico sin costo. Conversamos tu situación y te digo con franqueza por dónde partir.</p>
+      <a onclick="go('contacto')" class="btn btn-primary">Agenda tu diagnóstico →</a>
+    </div>
+  </section>
+</div>
+
+<!-- ============ AI AUTOMATION STUDIO ============ -->
+<div class="page" id="studio">
+  <section class="phero">
+    <div class="wrap">
+      <span class="eyebrow">★ Dana AI Automation Studio</span>
+      <h1>IA que responde, califica y <em>vende automáticamente</em>.</h1>
+      <p class="sub">Implementamos asistentes inteligentes y automatizaciones que atienden a tus clientes 24/7, capturan leads y derivan a tu equipo solo las oportunidades reales — sin contratar más personal.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:10px">
+    <div class="wrap">
+      <div class="whofor">
+        <h3>Para quién es</h3>
+        <div class="who-grid">
+          <div class="who"><span class="dot"></span>Clínicas dentales, estética y kinesiología</div>
+          <div class="who"><span class="dot"></span>Inmobiliarias y corredores de propiedades</div>
+          <div class="who"><span class="dot"></span>Academias, cursos y educación</div>
+          <div class="who"><span class="dot"></span>Servicios técnicos y mantenimiento</div>
+          <div class="who"><span class="dot"></span>Restaurantes, banquetería y eventos</div>
+          <div class="who"><span class="dot"></span>Estudios de abogados, contadores y asesorías</div>
+        </div>
+      </div>
+
+      <h2 style="font-size:1.7rem;margin:10px 0 6px">Cómo funciona</h2>
+      <div class="flow">
+        <div class="flow-step"><div class="s">1</div><p>Tu cliente escribe por WhatsApp</p></div>
+        <div class="flow-step"><div class="s">2</div><p>La IA responde al instante</p></div>
+        <div class="flow-step"><div class="s">3</div><p>El lead queda registrado</p></div>
+        <div class="flow-step"><div class="s">4</div><p>El sistema agenda o deriva</p></div>
+        <div class="flow-step"><div class="s">5</div><p>Tu equipo recibe el resumen</p></div>
+      </div>
+
+      <h2 style="font-size:1.7rem;margin:36px 0 18px">Planes WhatsApp IA</h2>
+      <div class="packs">
+        <div class="pack">
+          <span class="pack-tag">Básico · Entrada rápida</span>
+          <h3>WhatsApp IA Básico</h3>
+          <p class="for">Para negocios con muchas consultas repetidas que quieren dejar de responder a mano.</p>
+          <ul>
+            <li>Bot de bienvenida</li>
+            <li>Respuestas a preguntas frecuentes</li>
+            <li>Derivación a un humano cuando se necesita</li>
+            <li>Registro de leads en Google Sheets</li>
+          </ul>
+          <div class="pack-price"><b>$350.000 – $700.000</b><span>setup · mantención $80.000–$180.000 /mes</span></div>
+        </div>
+        <div class="pack featured">
+          <span class="pack-tag">Ventas · Más vendido</span>
+          <h3>WhatsApp IA Ventas</h3>
+          <p class="for">Para negocios que quieren convertir consultas en ventas, no solo responder.</p>
+          <ul>
+            <li>Todo lo del plan Básico</li>
+            <li>Calificación automática de leads</li>
+            <li>Integración con calendario y CRM</li>
+            <li>Seguimiento automático</li>
+            <li>Dashboard para el vendedor</li>
+          </ul>
+          <div class="pack-price"><b>$900.000 – $1.800.000</b><span>setup · mantención $200.000–$450.000 /mes</span></div>
+        </div>
+        <div class="pack">
+          <span class="pack-tag">Pro · Operación compleja</span>
+          <h3>WhatsApp IA Pro</h3>
+          <p class="for">Para empresas con múltiples áreas y operación más sofisticada.</p>
+          <ul>
+            <li>Agentes IA con base de conocimiento (RAG)</li>
+            <li>Enrutamiento inteligente por área</li>
+            <li>Reportes y logs</li>
+            <li>Revisión humana y múltiples flujos</li>
+          </ul>
+          <div class="pack-price"><b>$2.000.000 – $5.000.000+</b><span>setup · mantención desde $500.000 /mes</span></div>
+        </div>
+      </div>
+
+      <div class="sprint">
+        <div>
+          <span class="eyebrow">AI Automation Sprint · El comodín</span>
+          <h3>Automatizamos lo que quieras, en 10 días.</h3>
+          <p>¿Tienes un proceso que le quita horas a tu equipo? Lo convertimos en una automatización de alto impacto, lista y funcionando, en dos semanas hábiles.</p>
+          <ul>
+            <li><b>Días 1–3 · Diagnóstico:</b> entendemos el proceso y definimos el de mayor retorno</li>
+            <li><b>Días 4–7 · Diseño:</b> arquitectura de la automatización e integraciones</li>
+            <li><b>Días 8–10 · Implementación:</b> construcción, pruebas y puesta en marcha</li>
+          </ul>
+        </div>
+        <div class="sprint-box">
+          <div style="font-size:.76rem;text-transform:uppercase;letter-spacing:.14em;opacity:.7;font-weight:700">Implementación</div>
+          <div class="big">10<small> días</small></div>
+          <p style="opacity:.8;font-size:.9rem;margin:8px 0 18px">Alcance y precio fijos. Cotización en 24h.</p>
+          <a onclick="go('contacto')" class="btn btn-light" style="width:100%;justify-content:center">Cotizar mi Sprint →</a>
+        </div>
+      </div>
+
+      <p style="text-align:center;margin-top:30px;color:var(--ink-soft)">¿No sabes qué automatizar primero? Empieza por la <a onclick="go('audit')" style="color:var(--accent);font-weight:700;cursor:pointer">AI Operations Audit →</a></p>
+    </div>
+  </section>
+</div>
+
+<!-- ============ CTO AS A SERVICE ============ -->
+<div class="page" id="cto">
+  <section class="phero">
+    <div class="wrap">
+      <span class="eyebrow">★ Dana CTO as a Service</span>
+      <h1>Liderazgo tecnológico senior, <em>por fracción del costo</em>.</h1>
+      <p class="sub">Pon a disposición de tu empresa una CTO con +15 años de experiencia: definición de arquitectura, supervisión de producto y decisiones estratégicas de IA y automatización — sin el costo ni la espera de contratar un ejecutivo interno.</p>
+    </div>
+  </section>
+  <section style="padding-top:10px">
+    <div class="wrap">
+      <div class="star">
+        <span class="badge">Cómo se usa en 2026</span>
+        <h2>La jugada más rentable del año.</h2>
+        <p class="lead">El CTO fraccional dejó de ser un experimento. Con la presión de adoptar IA y un mercado de talento senior escaso y caro, contratar liderazgo técnico por horas — alguien que ya tomó estas decisiones en proyectos reales — es la forma en que las empresas medianas acceden a criterio de primer nivel sin pagar un sueldo ejecutivo completo.</p>
+        <div class="uc-grid">
+          <div class="uc"><h4>Startups post-inversión</h4><p>Decisiones de arquitectura correctas antes de escalar — para no rehacer todo en 18 meses.</p></div>
+          <div class="uc"><h4>Industria tradicional digitalizándose</h4><p>Sumar IA a minería, energía o construcción sin romper lo que ya funciona.</p></div>
+          <div class="uc"><h4>Deuda técnica heredada</h4><p>Un roadmap senior para ordenar el caos y recuperar velocidad de desarrollo.</p></div>
+          <div class="uc"><h4>Directorios que exigen un plan de IA</h4><p>La voz técnica que traduce "¿cuál es nuestra estrategia de IA?" en un plan ejecutable.</p></div>
+        </div>
+      </div>
+
+      <div class="whofor" style="margin-top:30px">
+        <h3>Qué incluye</h3>
+        <div class="who-grid">
+          <div class="who"><span class="dot"></span>Definición de la arquitectura tecnológica adecuada</div>
+          <div class="who"><span class="dot"></span>Supervisión del desarrollo de producto</div>
+          <div class="who"><span class="dot"></span>Escalabilidad y seguridad de la plataforma</div>
+          <div class="who"><span class="dot"></span>Estrategia y roadmap de IA y automatización</div>
+          <div class="who"><span class="dot"></span>Sesiones periódicas con fundadores y directorio</div>
+          <div class="who"><span class="dot"></span>Modelo flexible: por horas o retainer mensual</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:34px"><a onclick="go('contacto')" class="btn btn-primary">Conversemos tu estrategia →</a></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ DELIVERY ============ -->
+<div class="page" id="delivery">
+  <section class="phero">
+    <div class="wrap">
+      <span class="eyebrow">Servicios · Dana Delivery</span>
+      <h1>Construimos, rescatamos y <em>gobernamos</em> proyectos complejos.</h1>
+      <p class="sub">Una sola contraparte responsable desde que el problema no tiene forma hasta que el producto está vivo, estable y siendo usado por personas reales.</p>
+    </div>
+  </section>
+  <section style="padding-top:10px">
+    <div class="wrap">
+      <div class="whofor">
+        <h3>A quién va dirigido</h3>
+        <div class="who-grid">
+          <div class="who"><span class="dot"></span>Empresas con un proyecto crítico que no pueden permitirse que falle</div>
+          <div class="who"><span class="dot"></span>Directorios que necesitan entregar a tiempo y con control real</div>
+          <div class="who"><span class="dot"></span>Proyectos en crisis: cronograma colapsado y presupuesto en rojo</div>
+          <div class="who"><span class="dot"></span>Organizaciones que adoptan metodologías ágiles sin lograr resultados</div>
+          <div class="who"><span class="dot"></span>Inversionistas que van a comprar o financiar un producto técnico</div>
+          <div class="who"><span class="dot"></span>Empresas que quieren una PMO/AMO que de verdad funcione</div>
+        </div>
+      </div>
+
+      <div class="cards3" style="margin-top:8px">
+        <div class="card"><div class="n">01 — Assess</div><h3>MVP Due Diligence</h3><p>Antes de invertir, mejor saber en qué. Hacemos visible el costo técnico oculto de un producto.</p><ul><li>Arquitectura y deuda técnica</li><li>Escalabilidad y seguridad</li><li>Informe honesto, sin jerga</li></ul></div>
+        <div class="card"><div class="n">02 — Rescue · Flagship</div><h3>Project Recovery</h3><p>La UCI de los proyectos. Entramos cuando la situación es crítica y no salimos hasta estabilizar.</p><ul><li>Triage y root cause analysis</li><li>Plan de recuperación realista</li><li>Ejecución directa hasta estabilizar</li></ul></div>
+        <div class="card"><div class="n">03 — Govern</div><h3>PMO &amp; AMO · Lean / Agile</h3><p>Diseñamos e implementamos la oficina de proyectos y la transformación ágil — y nos quedamos hasta que operes sola.</p><ul><li>Diagnóstico de madurez (OPM3 / CMMI)</li><li>Governance, roles y reporting</li><li>Métricas de flujo y adopción</li></ul></div>
+      </div>
+      <div style="text-align:center;margin-top:34px"><a onclick="go('contacto')" class="btn btn-primary">Hablemos de tu proyecto →</a></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ TECH SOLUTIONS ============ -->
+<div class="page" id="tech">
+  <section class="phero">
+    <div class="wrap">
+      <span class="eyebrow">Servicios · Dana Tech Solutions</span>
+      <h1>De la idea al producto <em>vivo en producción</em>.</h1>
+      <p class="sub">Software factory end-to-end con IA integrada al ciclo, e integración de hardware e IoT. Lo que antes tomaba meses, hoy toma semanas — sin sacrificar calidad ni control.</p>
+    </div>
+  </section>
+  <section style="padding-top:10px">
+    <div class="wrap">
+      <div class="cards3">
+        <div class="card"><div class="n">Software Factory E2E</div><h3>Desarrollo end-to-end</h3><p>Una sola contraparte del problema a producción, con IA acelerando cada etapa.</p><ul><li>Discovery y arquitectura</li><li>Desarrollo, QA y deploy CI/CD</li><li>Cloud, monitoreo y soporte</li></ul></div>
+        <div class="card"><div class="n">IoT &amp; Hardware</div><h3>Integración de sensores</h3><p>Plataformas que combinan dispositivos físicos, conectividad, cloud y apps — como el Sensor Inteligente DERCO.</p><ul><li>Telemetría y geolocalización</li><li>Integración con sistemas externos</li><li>Apps nativas iOS / Android</li></ul></div>
+        <div class="card"><div class="n">Integraciones enterprise</div><h3>Core &amp; legacy</h3><p>Conectamos lo nuevo con lo que ya tienes: SAP, sistemas transaccionales y APIs críticas.</p><ul><li>SAP (MM, SD, FI, PI/PO)</li><li>APIs REST / SOAP</li><li>AWS, Angular, microservicios</li></ul></div>
+      </div>
+      <p style="margin-top:24px;color:var(--ink-soft);font-size:.96rem">¿Quieres ver esto en acción? Revisa los casos <a onclick="go('caso-copec')" style="color:var(--accent);font-weight:700;cursor:pointer">App COPEC</a> y <a onclick="go('caso-derco')" style="color:var(--accent);font-weight:700;cursor:pointer">Sensor DERCO</a>.</p>
+      <div style="text-align:center;margin-top:24px"><a onclick="go('contacto')" class="btn btn-primary">Construyamos tu producto →</a></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ AUDIT ============ -->
+<div class="page" id="audit">
+  <section class="phero">
+    <div class="wrap">
+      <span class="eyebrow">Servicios · Dana Audit</span>
+      <h1>AI Operations Audit — <em>el mejor primer paso</em>.</h1>
+      <p class="sub">Antes de automatizar a ciegas, un diagnóstico senior de dónde estás parado y qué te conviene mover primero. Bajo compromiso, máximo criterio.</p>
+    </div>
+  </section>
+  <section style="padding-top:10px">
+    <div class="wrap">
+      <div class="star">
+        <span class="badge">2 semanas · Entregables claros</span>
+        <h2>Qué te llevas.</h2>
+        <p class="lead">Un informe ejecutivo accionable, sin humo, y un camino directo hacia el siguiente paso.</p>
+        <div class="uc-grid">
+          <div class="uc"><h4>1 · Auditoría de brechas tecnológicas</h4><p>Dónde tu stack te frena o te expone a riesgo.</p></div>
+          <div class="uc"><h4>2 · Roadmap de automatización con IA</h4><p>Qué automatizar, en qué orden y con qué retorno estimado.</p></div>
+          <div class="uc"><h4>3 · Evaluación de gestión de proyectos</h4><p>Madurez, cuellos de botella y cómo recuperar velocidad de entrega.</p></div>
+          <div class="uc"><h4>4 · Roadmap de mejoramiento</h4><p>Quick wins desde el día uno + iniciativas priorizadas por impacto.</p></div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:34px"><a onclick="go('contacto')" class="btn btn-primary">Solicitar mi auditoría →</a></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ CASOS ============ -->
+<div class="page" id="casos">
+  <section class="phero"><div class="wrap"><span class="eyebrow">Casos de éxito</span><h1>No vendemos teoría. <em>Esto lo construimos.</em></h1><p class="sub">Proyectos reales en industrias donde el error cuesta caro — defensa, automotriz, minería.</p></div></section>
+  <section style="padding-top:10px"><div class="wrap"><div class="case-grid">
+    <div class="case" onclick="go('caso-copec')"><div class="cat">Fintech · Defensa</div><h3>App COPEC — FF.AA.</h3><p>Módulo de gestión de combustible para las Fuerzas Armadas dentro de Muevo Empresas, con prepago y post-pago integrados al core SAP.</p><div class="role">Directora de proyecto · Referente técnico E2E →</div></div>
+    <div class="case" onclick="go('caso-derco')"><div class="cat">IoT · Automotriz</div><h3>Sensor Inteligente DERCO</h3><p>Telemática y seguridad vehicular con marca propia: IoT, cloud AWS, app móvil e integración con Carabineros.</p><div class="role">Project Manager E2E →</div></div>
+    <div class="case" onclick="go('caso-codelco')"><div class="cat">Madurez · Minería</div><h3>OPM3 Codelco</h3><p>Evaluación de madurez sobre 105 facilitadores OPM3 en divisiones de la minera de cobre más grande del mundo.</p><div class="role">Líder técnico y metodológico →</div></div>
+  </div></div></section>
+</div>
+
+<!-- CASE: COPEC -->
+<div class="page" id="caso-copec"><section class="phero"><div class="wrap case-detail">
+  <span class="back" onclick="go('casos')">← Volver a casos</span>
+  <div class="meta">Fintech · Defensa · SAP</div>
+  <h1>App COPEC — Muevo Empresas</h1>
+  <p class="client">Plataforma de gestión de combustible para el segmento FF.AA. · Copec Industrial</p>
+  <h3>El contexto</h3>
+  <p>Muevo Empresas es la plataforma transaccional de Copec para clientes con flotas industriales de alto volumen — una de las más grandes de Latinoamérica. Dentro de ese ecosistema, las Fuerzas Armadas representan uno de los clientes más complejos: flotas de aviones, buques y maquinaria pesada de múltiples ramas, cada una con sus propios contratos, cupos y requerimientos de trazabilidad institucional.</p>
+  <h3>El desafío</h3>
+  <p>El abastecimiento de las FF.AA. vivía en un modelo manual: órdenes de compra en papel, gestión telefónica de cupos y conciliaciones en planillas, sin visibilidad en tiempo real. Digitalizarlo implicaba respetar una estructura institucional rígida, múltiples niveles de autorización y dos modelos de pago radicalmente distintos.</p>
+  <h3>Mi rol</h3>
+  <p>Participé como <b>directora de proyecto y referente técnico E2E</b>, desde el levantamiento de requerimientos hasta la puesta en producción: workshops con operadores logísticos y equipos financieros de cada rama, mapeo del flujo AS-IS y diseño del TO-BE.</p>
+  <div class="pillars">
+    <div class="pillar"><b>Producto 1 — Prepago FF.AA.</b><span>Tarjeta con carga de saldo vía OC institucional y descuento en tiempo real al despacho, con saldo visible por unidad y rama.</span></div>
+    <div class="pillar"><b>Producto 2 — Post-pago FF.AA.</b><span>Línea de crédito por contrato, conciliación automática contra SAP FI y factura consolidada por rama al cierre del ciclo.</span></div>
+  </div>
+  <h3>La arquitectura</h3>
+  <p>Sobre el core SAP ECC (MM, SD, FI, CO/PS) conectado a Muevo Empresas vía capa REST/SOAP sobre SAP PI/PO, con BAPIs e IDocs. Frontend en Angular 15+ con OAuth 2.0/JWT; datos en SAP HANA, PostgreSQL y Redis; entrega con Jenkins, Docker y Kubernetes sobre AWS EKS; gestión con Jira/Confluence en Scrum.</p>
+  <div class="tag-list"><span class="tg">SAP ECC</span><span class="tg">Angular 15+</span><span class="tg">AWS EKS</span><span class="tg">PI/PO · BAPIs</span><span class="tg">Scrum</span></div>
+</div></section></div>
+
+<!-- CASE: DERCO -->
+<div class="page" id="caso-derco"><section class="phero"><div class="wrap case-detail">
+  <span class="back" onclick="go('casos')">← Volver a casos</span>
+  <div class="meta">IoT · Automotriz · AWS</div>
+  <h1>Sensor Inteligente "SID" DERCO</h1>
+  <p class="client">Plataforma de telemática, IoT y seguridad vehicular · DercoCenter Chile</p>
+  <h3>El contexto</h3>
+  <p>Derco —hoy parte de Inchcape Américas— es el principal distribuidor automotriz de Chile. En un mercado con alto robo de vehículos y siniestralidad, la empresa dio un paso que pocos distribuidores han dado en Latinoamérica: desarrollar un servicio de telemática con marca propia, modelo de suscripción y ecosistema digital completo.</p>
+  <h3>Mi rol</h3>
+  <p>Participé como <b>Project Manager E2E</b>: levantamiento de requerimientos, coordinación de proveedores tecnológicos, seguimiento de implementación y gestión de la puesta en marcha — coordinando equipos internos con proveedores de hardware, conectividad y asistencia en ruta.</p>
+  <div class="pillars">
+    <div class="pillar"><b>Seguridad antirrobo</b><span>GPS permanente, cortaencendido remoto y protocolo de recuperación con transmisión en tiempo real a OS-9 de Carabineros.</span></div>
+    <div class="pillar"><b>eCall automático</b><span>Sensor de choque que detecta colisiones y activa alerta automática a la central, coordinando ambulancia o grúa sin intervención del conductor.</span></div>
+    <div class="pillar"><b>Telemetría</b><span>Registro de viajes, velocidad, estimación de consumo y comparación de períodos, visible en tiempo real desde la app.</span></div>
+    <div class="pillar"><b>Asistencia en ruta 24/7</b><span>Más de 20 servicios operados a nivel nacional: grúa, batería, cerrajería, chofer de reemplazo y más.</span></div>
+  </div>
+  <h3>La arquitectura</h3>
+  <p>Dispositivo con GPS, módulo GSM/4G, acelerómetro y relay de cortaencendido. Backend sobre AWS (us-east-1) con S3 y API REST como capa de integración; central de monitoreo 24/7 conectada a OS-9. Apps nativas iOS y Android + panel web. Gestión con Jira/Confluence en Scrum.</p>
+  <p style="font-family:'Fraunces',serif;font-style:italic;font-size:1.1rem;color:var(--ink)">Hardware en el auto. Cloud en AWS. App en el bolsillo. Carabineros en el loop.</p>
+  <div class="tag-list"><span class="tg">IoT · GSM/4G</span><span class="tg">AWS</span><span class="tg">iOS · Android</span><span class="tg">API REST</span><span class="tg">Scrum</span></div>
+</div></section></div>
+
+<!-- CASE: CODELCO -->
+<div class="page" id="caso-codelco"><section class="phero"><div class="wrap case-detail">
+  <span class="back" onclick="go('casos')">← Volver a casos</span>
+  <div class="meta">Madurez Organizacional · Minería</div>
+  <h1>Medición OPM3 Codelco</h1>
+  <p class="client">Madurez en gestión organizacional de proyectos · Vicepresidencia de Proyectos, Codelco</p>
+  <h3>El contexto</h3>
+  <p>Codelco es la mayor productora de cobre del mundo, con un portafolio de inversiones sobre US$10.000 millones y múltiples divisiones, cada una con su propia gobernanza. La Vicepresidencia de Proyectos encargó una evaluación integral de madurez aplicando el estándar OPM3 Third Edition del PMI.</p>
+  <h3>El desafío</h3>
+  <p>El problema no era la ausencia de marcos, sino la falta de evidencia objetiva sobre cuánto esas capacidades estaban realmente estandarizadas, medidas y controladas en cada división. Sin línea base común, era imposible comparar madurez o priorizar inversiones de mejora.</p>
+  <h3>Mi rol</h3>
+  <p>Participé como <b>líder técnico y metodológico</b>, con responsabilidad end-to-end: diseño del instrumento, planificación de workshops, informes de brechas divisionales y el roadmap de mejora corporativo. Adaptamos los 105 Facilitadores Organizacionales del OPM3 al lenguaje y sistemas de Codelco sin perder fidelidad al estándar.</p>
+  <h3>El modelo de análisis</h3>
+  <p>Instrumento de doble capa (ejecutiva y técnica) sobre 7 dimensiones, evaluando cada FO en los 4 niveles SMCI — Estandarizar, Medir, Controlar, Mejorar. Las brechas se clasificaron en críticas y significativas, consolidadas en matrices de análisis cruzado por división, con enfoque de consultoría Big Four y entregables diferenciados por audiencia.</p>
+  <p style="font-family:'Fraunces',serif;font-style:italic;font-size:1.1rem;color:var(--ink)">Por primera vez Codelco tuvo una línea base objetiva y comparable entre divisiones — y un roadmap con quick wins desde el día uno.</p>
+  <div class="tag-list"><span class="tg">OPM3 3rd Ed.</span><span class="tg">105 FOs</span><span class="tg">7 dimensiones</span><span class="tg">SMCI</span><span class="tg">Big Four approach</span></div>
+</div></section></div>
+
+<!-- ============ NOSOTROS / CV ============ -->
+<div class="page" id="nosotros">
+  <section class="phero"><div class="wrap"><span class="eyebrow">Nosotros</span><h1>Soy Dana Mardones.</h1><p class="sub">Más de 15 años tomando decisiones técnicas donde no hay margen para improvisar.</p></div></section>
+  <section style="padding-top:10px"><div class="wrap cv-grid">
+    <div class="cv-side">
+      <div class="cv-card">
+        <div class="big">15<small>+</small></div>
+        <h3>Dana Mardones</h3>
+        <div class="r">Consultora boutique · Líder de proyectos tecnológicos · IA &amp; automatización</div>
+        <div class="contact">
+          <span>📍 Patagonia, Chile</span>
+          <span>📞 +56 9 4141 1832</span>
+          <span>✉️ danimardon@gmail.com</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="cv-block">
+        <h3>Quién soy</h3>
+        <p style="color:var(--ink-soft);font-size:1.05rem">He liderado proyectos tecnológicos en algunas de las industrias más complejas y reguladas: minería, fintech, energía, automotriz y defensa. Esa experiencia me enseñó la diferencia entre algo que funciona en una demo y algo que sobrevive en producción. Hoy traigo ese criterio a la IA y la automatización — con método, perspectiva y la honestidad de decir qué sí y qué no conviene.</p>
+      </div>
+      <div class="cv-block">
+        <h3>Experiencia destacada</h3>
+        <div class="cv-item"><div class="role">Directora de proyecto · Referente técnico E2E</div><div class="org">App COPEC — Muevo Empresas · Copec Industrial</div><p>Diseño e implementación del módulo de gestión de combustible para el segmento FF.AA., con integración profunda al core SAP.</p></div>
+        <div class="cv-item"><div class="role">Project Manager E2E</div><div class="org">Sensor Inteligente DERCO · DercoCenter</div><p>Plataforma de telemática, IoT y seguridad vehicular con cloud AWS, apps nativas e integración con Carabineros.</p></div>
+        <div class="cv-item"><div class="role">Líder técnico y metodológico</div><div class="org">Medición OPM3 · Vicepresidencia de Proyectos, Codelco</div><p>Evaluación de madurez organizacional sobre 105 facilitadores OPM3 en divisiones de la mayor minera de cobre del mundo.</p></div>
+        <div class="note">✏️ Dana: agrega aquí tus roles formales (Experian, etc.), fechas y cualquier otro hito que quieras destacar.</div>
+      </div>
+      <div class="cv-block">
+        <h3>Capacidades</h3>
+        <div class="skill-tags">
+          <span>Liderazgo de proyectos E2E</span><span>IA &amp; automatización</span><span>Arquitectura de software</span><span>SAP</span><span>AWS · Cloud</span><span>IoT</span><span>OPM3 · CMMI</span><span>Scrum · Agile</span><span>PMO &amp; AMO</span><span>Project Recovery</span>
+        </div>
+        <div class="note">✏️ Agrega tus certificaciones (PMP, SAFe, etc.) y formación académica.</div>
+      </div>
+      <div style="margin-top:20px"><a onclick="go('contacto')" class="btn btn-primary">Trabajemos juntos →</a></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- ============ CONTACTO ============ -->
+<div class="page" id="contacto">
+  <section class="final" style="padding-top:90px">
+    <div class="wrap">
+      <span class="eyebrow" style="justify-content:center">Contacto</span>
+      <h2>Conversemos tu <em>próximo proyecto</em>.</h2>
+      <p>Agenda un diagnóstico sin costo. Te digo con franqueza por dónde partir y qué te conviene de verdad.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:30px">
+        <a href="https://wa.me/56941411832" class="btn btn-primary">Escríbeme por WhatsApp →</a>
+        <a href="mailto:danimardon@gmail.com" class="btn btn-ghost">Enviar email</a>
+      </div>
+      <p style="font-size:.95rem">📞 +56 9 4141 1832 · ✉️ danimardon@gmail.com · 📍 Patagonia, Chile</p>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap foot-in">
+    <div>
+      <div class="foot-logo">DANA<span>&</span>CO</div>
+      <p style="opacity:.7;font-size:.9rem;margin-top:10px;max-width:260px">Consultoría boutique de tecnología, IA y automatización. Patagonia, Chile.</p>
+    </div>
+    <div class="foot-cols">
+      <div class="foot-col"><h5>Productos</h5><a onclick="go('studio')">AI Automation Studio</a><a onclick="go('cto')">CTO as a Service</a><a onclick="go('delivery')">Dana Delivery</a><a onclick="go('tech')">Tech Solutions</a><a onclick="go('audit')">AI Operations Audit</a></div>
+      <div class="foot-col"><h5>Empresa</h5><a onclick="go('casos')">Casos de éxito</a><a onclick="go('nosotros')">Nosotros</a><a onclick="go('contacto')">Contacto</a></div>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">© 2026 Dana&Co · Hecho con criterio, no con improvisación.</div>
+</footer>
+
+<script>
+  function go(id){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    var el=document.getElementById(id);
+    if(el){el.classList.add('active');}
+    document.getElementById('navlinks').classList.remove('open');
+    window.scrollTo({top:0,behavior:'instant'});
+  }
+  document.getElementById('burger').addEventListener('click',function(){
+    document.getElementById('navlinks').classList.toggle('open');
+  });
+</script>
+</body>
+</html>
