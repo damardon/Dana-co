@@ -1,31 +1,26 @@
-# Dana AI Studio — Sitio web
+# Dana & Co — Sitio web
 
-Landing de **Dana AI Studio** (agencia de IA de Dana & Co), con estética inspirada en el tema WordPress **Gotra** / [dana-co.cl](https://dana-co.cl): fondo oscuro, tipografía grande y titulares partidos.
+Sitio multipágina (**SPA**) para Dana & Co: **Dana AI Studio**, Gerente TI as a Service, Delivery, Tech y Audit.
 
-## Contenido
-
-- Agentes IA (Inbound, Outbound, Preventa, Postventa)
-- Ejemplos de conversaciones en WhatsApp
-- Dana Automation por industria
-- Dana Audit: plan de digitalización y **Gerente TI as a Service**
+Basado en `danaco-site.html` (contenido y diseño Fraunces/Archivo) + mejoras de credibilidad, carruseles y agentes IA.
 
 ## Ver en local
 
 ```bash
-cd /workspace
 python3 -m http.server 8080
+# http://localhost:8080  → index.html
 ```
 
-Abre [http://localhost:8080](http://localhost:8080).
+## Archivos
 
-## Estructura
+| Archivo | Rol |
+|---------|-----|
+| `index.html` | Sitio principal |
+| `danaco-site.html` | Copia sincronizada del HTML base |
+| `css/dana-enhancements.css` | Carruseles, confianza, agentes, WhatsApp |
+| `js/dana-site.js` | Navegación SPA y carruseles |
+| `gotra-template-extraido.zip` | Export WordPress tema Gotra (referencia) |
 
-- `index.html` — página principal
-- `css/style.css` — estilos
-- `js/main.js` — menú móvil, pestañas de industrias, animaciones
+## Rama de trabajo
 
-## Próximos pasos (opcional)
-
-- Subir el ZIP del tema Gotra y migrar a WordPress + Elementor
-- Conectar el formulario a Formspree, HubSpot o CRM
-- Reemplazar placeholders de redes y teléfono con datos reales
+`cursor/dana-ai-studio-site-712b` — PR en GitHub.
