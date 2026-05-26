@@ -1,0 +1,1220 @@
+/**
+ * Gotra (WPKoi) — tokens extraídos del export WordPress / demo premium
+ * Fuentes: Poppins · Fondo: #111111 · Acento: #FF8BB8 · Superficies: #222 / #EEE
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --gotra-bg: #111111;
+  --gotra-bg-2: #1a1a1a;
+  --gotra-surface: #222222;
+  --gotra-surface-light: #eeeeee;
+  --gotra-text: #eeeeee;
+  --gotra-text-soft: #888888;
+  --gotra-white: #ffffff;
+  --gotra-accent: #ff8bb8;
+  --gotra-accent-2: #5b8bee;
+  --gotra-cream: #fdfdf5;
+  --gotra-line: rgba(238, 238, 238, 0.14);
+  --gotra-card: #1c1c1c;
+  --gotra-max: 1180px;
+  --gotra-font: "Poppins", system-ui, sans-serif;
+
+  /* alias compatibles con HTML existente */
+  --ink: var(--gotra-white);
+  --ink-soft: var(--gotra-text-soft);
+  --paper: var(--gotra-bg);
+  --paper-2: var(--gotra-bg-2);
+  --accent: var(--gotra-accent);
+  --accent-deep: #e76a9a;
+  --line: var(--gotra-line);
+  --card: var(--gotra-card);
+  --maxw: var(--gotra-max);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--gotra-font);
+  font-weight: 400;
+  background: var(--gotra-bg);
+  color: var(--gotra-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Textura “noisy” Gotra */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--gotra-font);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--gotra-white);
+}
+
+.wrap {
+  max-width: var(--gotra-max);
+  margin: 0 auto;
+  padding: 0 28px;
+  position: relative;
+  z-index: 1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.accent {
+  color: var(--gotra-accent);
+}
+
+/* —— Navegación —— */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(17, 17, 17, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--gotra-line);
+}
+
+.nav-in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--gotra-white);
+}
+
+.logo span {
+  color: var(--gotra-accent);
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--gotra-text-soft);
+  transition: color 0.2s;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--gotra-accent);
+}
+
+.nav-cta {
+  background: var(--gotra-accent) !important;
+  color: var(--gotra-bg) !important;
+  padding: 10px 18px;
+  border-radius: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.75rem !important;
+}
+
+.nav-cta:hover {
+  background: var(--gotra-white) !important;
+  color: var(--gotra-bg) !important;
+}
+
+.dd {
+  position: relative;
+}
+
+.dd-menu {
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: var(--gotra-surface);
+  border: 1px solid var(--gotra-line);
+  padding: 8px;
+  min-width: 240px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.22s;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.dd:hover .dd-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dd-menu a {
+  display: block;
+  padding: 11px 14px;
+  font-size: 0.88rem;
+  color: var(--gotra-text);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.dd-menu a:hover {
+  background: var(--gotra-bg-2);
+  color: var(--gotra-accent);
+}
+
+.dd-menu a b {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gotra-white);
+}
+
+.dd-menu a span {
+  font-size: 0.76rem;
+  color: var(--gotra-text-soft);
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.burger span {
+  width: 24px;
+  height: 2px;
+  background: var(--gotra-white);
+}
+
+/* —— Páginas SPA —— */
+.page {
+  display: none;
+  animation: gotra-fade 0.45s ease;
+}
+
+.page.active {
+  display: block;
+}
+
+@keyframes gotra-fade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* —— Botones Gotra: rectos, alto contraste —— */
+.btn {
+  padding: 14px 28px;
+  border-radius: 0;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: 0.22s;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-family: var(--gotra-font);
+}
+
+.btn-primary {
+  background: var(--gotra-accent);
+  color: var(--gotra-bg);
+  border-color: var(--gotra-accent);
+}
+
+.btn-primary:hover {
+  background: var(--gotra-white);
+  border-color: var(--gotra-white);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  border-color: var(--gotra-text-soft);
+  color: var(--gotra-white);
+  background: transparent;
+}
+
+.btn-ghost:hover {
+  border-color: var(--gotra-accent);
+  color: var(--gotra-accent);
+  background: transparent;
+}
+
+.btn-light {
+  background: var(--gotra-white);
+  color: var(--gotra-bg);
+}
+
+.btn-light:hover {
+  background: var(--gotra-accent);
+  color: var(--gotra-bg);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gotra-accent);
+  margin-bottom: 20px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  background: var(--gotra-accent);
+}
+
+section {
+  padding: 80px 0;
+  position: relative;
+}
+
+.sec-head {
+  max-width: 720px;
+  margin-bottom: 48px;
+}
+
+.sec-head h2 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  margin-bottom: 16px;
+  text-transform: lowercase;
+}
+
+.sec-head p {
+  font-size: 1.05rem;
+  color: var(--gotra-text-soft);
+  font-weight: 300;
+}
+
+/* —— Hero estilo Gotra: titulares partidos gigantes —— */
+.hero {
+  padding: 100px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 139, 184, 0.25);
+  top: -120px;
+  right: -80px;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background: var(--gotra-accent);
+  border-radius: 50%;
+  opacity: 0.12;
+  bottom: 10%;
+  left: -40px;
+  pointer-events: none;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 48px;
+  align-items: end;
+}
+
+.gotra-split {
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  font-weight: 800;
+  line-height: 0.92;
+  text-transform: lowercase;
+  margin-bottom: 28px;
+}
+
+.gotra-split span {
+  display: block;
+}
+
+.gotra-split .muted {
+  color: var(--gotra-text-soft);
+  font-weight: 300;
+}
+
+.gotra-split .pink {
+  color: var(--gotra-accent);
+}
+
+.hero p {
+  font-size: 1.05rem;
+  color: var(--gotra-text-soft);
+  max-width: 520px;
+  margin-bottom: 32px;
+  font-weight: 300;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.portrait-card {
+  background: var(--gotra-surface);
+  border: 1px solid var(--gotra-line);
+  padding: 36px 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.portrait-card::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 140px;
+  height: 140px;
+  background: var(--gotra-accent);
+  border-radius: 50%;
+  opacity: 0.35;
+}
+
+.portrait-card .num {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1;
+  position: relative;
+  color: var(--gotra-white);
+}
+
+.portrait-card .lbl {
+  font-size: 0.88rem;
+  color: var(--gotra-text-soft);
+  position: relative;
+  margin-bottom: 24px;
+  font-weight: 300;
+}
+
+.portrait-mini {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--gotra-line);
+  padding-top: 16px;
+  position: relative;
+}
+
+.portrait-mini div b {
+  font-size: 1.2rem;
+  display: block;
+  color: var(--gotra-white);
+}
+
+.portrait-mini div span {
+  font-size: 0.68rem;
+  color: var(--gotra-text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.strip {
+  border-top: 1px solid var(--gotra-line);
+  border-bottom: 1px solid var(--gotra-line);
+  padding: 22px 0;
+  margin-top: 48px;
+}
+
+.strip-in {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.strip-in .t {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--gotra-text-soft);
+  font-weight: 600;
+}
+
+.strip-in .i {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gotra-white);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* —— Tarjetas producto —— */
+.brandrow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.brandcard {
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.25s;
+  border: 1px solid var(--gotra-line);
+  background: var(--gotra-card);
+}
+
+.brandcard:hover {
+  border-color: var(--gotra-accent);
+  transform: translateY(-4px);
+}
+
+.brandcard.dark {
+  background: var(--gotra-surface);
+  border-color: var(--gotra-surface);
+}
+
+.brandcard.studio {
+  background: var(--gotra-bg);
+  border-color: var(--gotra-accent);
+}
+
+.brandcard.studio::after {
+  content: "";
+  position: absolute;
+  bottom: -100px;
+  right: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 2px solid var(--gotra-accent);
+  opacity: 0.4;
+}
+
+.brandcard .tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gotra-accent);
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+.brandcard h3 {
+  font-size: 1.65rem;
+  margin-bottom: 12px;
+  text-transform: lowercase;
+  font-weight: 700;
+}
+
+.brandcard p {
+  font-size: 0.95rem;
+  color: var(--gotra-text-soft);
+  margin-bottom: 18px;
+  max-width: 440px;
+  font-weight: 300;
+}
+
+.brandcard .go {
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gotra-accent);
+}
+
+.brandcard.full {
+  grid-column: 1 / -1;
+}
+
+.cards3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.card {
+  background: var(--gotra-card);
+  border: 1px solid var(--gotra-line);
+  padding: 28px 24px;
+  transition: 0.25s;
+}
+
+.card:hover {
+  border-color: var(--gotra-accent);
+  transform: translateY(-3px);
+}
+
+.card .n {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gotra-accent);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  text-transform: lowercase;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: var(--gotra-text-soft);
+  margin-bottom: 14px;
+  font-weight: 300;
+}
+
+.card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.card li {
+  font-size: 0.84rem;
+  padding-left: 18px;
+  position: relative;
+  color: var(--gotra-text-soft);
+}
+
+.card li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--gotra-accent);
+}
+
+.phero {
+  padding: 80px 0 24px;
+}
+
+.phero h1,
+.phero .gotra-split {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  margin-bottom: 18px;
+  max-width: 900px;
+}
+
+.phero h1 em {
+  font-style: normal;
+  color: var(--gotra-accent);
+  font-weight: 300;
+}
+
+.phero .sub {
+  font-size: 1.1rem;
+  color: var(--gotra-text-soft);
+  max-width: 680px;
+  font-weight: 300;
+}
+
+.whofor {
+  background: var(--gotra-surface);
+  border: 1px solid var(--gotra-line);
+  padding: 40px 36px;
+  margin: 28px 0;
+}
+
+.whofor h3 {
+  font-size: 1.35rem;
+  margin-bottom: 18px;
+  text-transform: lowercase;
+}
+
+.who-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.who {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 0.92rem;
+  color: var(--gotra-text-soft);
+}
+
+.who .dot {
+  width: 6px;
+  height: 6px;
+  background: var(--gotra-accent);
+  margin-top: 9px;
+  flex-shrink: 0;
+}
+
+.flow {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin: 28px 0;
+}
+
+.flow-step {
+  text-align: center;
+  padding: 18px 10px;
+  background: var(--gotra-card);
+  border: 1px solid var(--gotra-line);
+}
+
+.flow-step .s {
+  width: 32px;
+  height: 32px;
+  background: var(--gotra-accent);
+  color: var(--gotra-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  margin: 0 auto 10px;
+  font-size: 0.85rem;
+}
+
+.flow-step p {
+  font-size: 0.78rem;
+  color: var(--gotra-text-soft);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.packs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.pack {
+  background: var(--gotra-card);
+  border: 1px solid var(--gotra-line);
+  padding: 28px 24px;
+}
+
+.pack.featured {
+  border-color: var(--gotra-accent);
+  box-shadow: 0 0 0 1px var(--gotra-accent);
+}
+
+.pack-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gotra-accent);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.pack h3 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  text-transform: lowercase;
+}
+
+.pack .for {
+  font-size: 0.88rem;
+  color: var(--gotra-text-soft);
+  margin-bottom: 16px;
+  font-weight: 300;
+}
+
+.pack ul {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.pack li {
+  font-size: 0.84rem;
+  color: var(--gotra-text-soft);
+  padding: 5px 0;
+  border-bottom: 1px solid var(--gotra-line);
+}
+
+.pack-price b {
+  display: block;
+  font-size: 1.2rem;
+  color: var(--gotra-white);
+}
+
+.pack-price span {
+  font-size: 0.8rem;
+  color: var(--gotra-text-soft);
+}
+
+.sprint {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+  margin-top: 40px;
+  background: var(--gotra-surface);
+  border: 1px solid var(--gotra-line);
+  padding: 36px;
+}
+
+.sprint-box {
+  background: var(--gotra-bg);
+  border: 1px solid var(--gotra-accent);
+  padding: 28px;
+  text-align: center;
+  color: var(--gotra-white);
+}
+
+.sprint-box .big {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--gotra-accent);
+}
+
+.star {
+  background: var(--gotra-surface);
+  border: 1px solid var(--gotra-line);
+  padding: 40px 36px;
+}
+
+.star .badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gotra-accent);
+  display: block;
+  margin-bottom: 14px;
+}
+
+.star h2 {
+  font-size: 1.8rem;
+  margin-bottom: 14px;
+  text-transform: lowercase;
+}
+
+.star .lead {
+  color: var(--gotra-text-soft);
+  font-weight: 300;
+  margin-bottom: 24px;
+}
+
+.uc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.uc {
+  padding: 18px;
+  background: var(--gotra-bg);
+  border: 1px solid var(--gotra-line);
+}
+
+.uc h4 {
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+  text-transform: lowercase;
+}
+
+.uc p {
+  font-size: 0.86rem;
+  color: var(--gotra-text-soft);
+  font-weight: 300;
+}
+
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.case {
+  background: var(--gotra-card);
+  border: 1px solid var(--gotra-line);
+  padding: 28px 24px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.case:hover {
+  border-color: var(--gotra-accent);
+}
+
+.case .cat {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gotra-accent);
+  margin-bottom: 10px;
+}
+
+.case h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  text-transform: lowercase;
+}
+
+.case p {
+  font-size: 0.88rem;
+  color: var(--gotra-text-soft);
+  margin-bottom: 14px;
+  font-weight: 300;
+}
+
+.case .role {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--gotra-white);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.case-detail h3 {
+  margin: 24px 0 10px;
+  text-transform: lowercase;
+}
+
+.case-detail p {
+  color: var(--gotra-text-soft);
+  font-weight: 300;
+  margin-bottom: 14px;
+}
+
+.case-detail .meta,
+.case-detail .client {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gotra-accent);
+}
+
+.pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.pillar {
+  padding: 16px;
+  background: var(--gotra-card);
+  border-left: 3px solid var(--gotra-accent);
+}
+
+.pillar b {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--gotra-white);
+}
+
+.pillar span {
+  font-size: 0.88rem;
+  color: var(--gotra-text-soft);
+  font-weight: 300;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.tg {
+  font-size: 0.72rem;
+  padding: 6px 12px;
+  border: 1px solid var(--gotra-line);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.back {
+  cursor: pointer;
+  color: var(--gotra-accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.cv-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 40px;
+}
+
+.cv-card {
+  background: var(--gotra-surface);
+  border: 1px solid var(--gotra-line);
+  padding: 32px;
+  position: sticky;
+  top: 100px;
+}
+
+.cv-card .big {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--gotra-accent);
+}
+
+.cv-block {
+  margin-bottom: 28px;
+}
+
+.cv-item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--gotra-line);
+}
+
+.cv-item .role {
+  font-weight: 600;
+  color: var(--gotra-white);
+}
+
+.cv-item .org {
+  font-size: 0.85rem;
+  color: var(--gotra-accent);
+  margin-bottom: 6px;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tags span {
+  font-size: 0.72rem;
+  padding: 8px 12px;
+  border: 1px solid var(--gotra-line);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.final {
+  text-align: center;
+  padding: 100px 0;
+  border-top: 1px solid var(--gotra-line);
+}
+
+.final h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 16px;
+  text-transform: lowercase;
+}
+
+.final h2 em {
+  font-style: normal;
+  color: var(--gotra-accent);
+  font-weight: 300;
+}
+
+.final p {
+  color: var(--gotra-text-soft);
+  max-width: 520px;
+  margin: 0 auto 28px;
+  font-weight: 300;
+}
+
+footer {
+  background: var(--gotra-surface);
+  border-top: 1px solid var(--gotra-line);
+  padding: 48px 0 24px;
+}
+
+.foot-in {
+  display: grid;
+  grid-template-columns: 1.2fr 1.8fr;
+  gap: 40px;
+}
+
+.foot-logo {
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.foot-logo span {
+  color: var(--gotra-accent);
+}
+
+.foot-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.foot-col h5 {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 14px;
+  color: var(--gotra-accent);
+}
+
+.foot-col a {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--gotra-text-soft);
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.foot-col a:hover {
+  color: var(--gotra-accent);
+}
+
+.foot-bottom {
+  border-top: 1px solid var(--gotra-line);
+  margin-top: 32px;
+  padding-top: 20px;
+  font-size: 0.8rem;
+  color: var(--gotra-text-soft);
+  text-align: center;
+}
+
+/* Figura decorativa Gotra (círculo rosa) */
+.gotra-figure {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 139, 184, 0.35);
+}
+
+.gotra-figure.f1 {
+  width: 120px;
+  height: 120px;
+  top: 12%;
+  right: 8%;
+}
+
+.gotra-figure.f2 {
+  width: 48px;
+  height: 48px;
+  background: var(--gotra-accent);
+  opacity: 0.2;
+  bottom: 20%;
+  right: 22%;
+}
+
+@media (max-width: 900px) {
+  .hero-grid,
+  .brandrow,
+  .cards3,
+  .packs,
+  .case-grid,
+  .cv-grid,
+  .sprint,
+  .uc-grid,
+  .who-grid,
+  .pillars,
+  .foot-in {
+    grid-template-columns: 1fr;
+  }
+
+  .flow {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: var(--gotra-bg);
+    flex-direction: column;
+    padding: 24px;
+    gap: 16px;
+    border-bottom: 1px solid var(--gotra-line);
+    transform: translateY(-150%);
+    transition: 0.35s;
+    align-items: flex-start;
+    max-height: 85vh;
+    overflow: auto;
+  }
+
+  .nav-links.open {
+    transform: none;
+  }
+
+  .burger {
+    display: flex;
+  }
+
+  .dd-menu {
+    position: static;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    box-shadow: none;
+    border: none;
+    padding: 0 0 0 14px;
+    min-width: auto;
+    background: none;
+  }
+
+  .cv-card {
+    position: static;
+  }
+}
