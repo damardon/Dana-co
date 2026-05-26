@@ -1,30 +1,28 @@
-# Dana & Co — Sitio (clone visual Gotra)
+# Dana & Co — Sitio estático (Gotra / dana-co.cl)
 
-Sitio estático con **look & feel del demo [Gotra Premium](https://wpkoi.com/demos3/gotra-premium/)**: Poppins, fondos `#eee` / `#111`, acento `#FF8BB8`, titulares partidos, marquees y grillas.
+SPA multipágina con paleta **Gotra**: fondo `#111`, superficies `#222`, texto `#eee` / `#fff`, acento gris claro — **sin rosa ni naranja**. Tipografía Poppins, fondo `gotra-bg.gif`, titulares partidos en minúsculas.
 
-Contenido Dana: storytelling ejecutivo, **sin Dana Delivery**, respaldo Experian · COPEC · Codelco · DERCO.
+Contenido: storytelling del HTML compartido, demos interactivas estilo Adereso para agentes IA, WhatsApp flotante, sin Dana Delivery ni videos.
 
-## Ver local (obligatorio usar servidor)
+## Ver local
 
 ```bash
 cd Dana-co
 python -m http.server 8080
 ```
 
-Abrir **http://localhost:8080**
+Abrir **http://localhost:8080** (requiere `index.html`, `css/`, `js/` y `assets/img/` en la misma carpeta).
 
-La carpeta `assets/img/` debe existir junto a `index.html`.
-
-## Archivos
+## Archivos principales
 
 | Archivo | Uso |
 |---------|-----|
-| `index.html` | Sitio one-page |
-| `css/gotra-clone.css` | Estilos clone Gotra |
-| `js/gotra-clone.js` | Marquees, menú, scroll reveal |
-| `assets/img/` | Fotos y logos extraídos de **dana-co.cl** (`gotra-bg.gif`, retrato Dana, casos COPEC/Codelco, etc.) |
-| Video | Se reproduce desde `dana-co.cl` (archivo ~150MB, no va al repo) |
+| `index.html` | Sitio SPA (menú: Studio, Gerente TI, Tech, Audit, Casos, Nosotros, Contacto) |
+| `css/dana-gotra.css` | Estilos Gotra / dana-co.cl |
+| `js/dana-app.js` | Navegación y tabs de demos |
+| `assets/img/` | Logo, fotos y casos desde **dana-co.cl** |
+| `danaco-site.html` | Referencia original (crema/naranja) |
 
-## WordPress
+## WhatsApp
 
-Para fidelidad total: importar `gotra-template-extraido.zip` en WP + Elementor y pegar textos desde este HTML.
+Botón flotante y contacto: **+56 9 4141 1832** → `https://wa.me/56941411832`
