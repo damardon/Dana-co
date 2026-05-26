@@ -22,7 +22,8 @@ La carpeta `assets/img/` debe existir junto a `index.html`.
 | `index.html` | Sitio one-page |
 | `css/gotra-clone.css` | Estilos clone Gotra |
 | `js/gotra-clone.js` | Marquees, menú, scroll reveal |
-| `assets/img/` | Imágenes demo (reemplazar por fotos propias) |
+| `assets/img/` | Fotos y logos extraídos de **dana-co.cl** (`gotra-bg.gif`, retrato Dana, casos COPEC/Codelco, etc.) |
+| Video | Se reproduce desde `dana-co.cl` (archivo ~150MB, no va al repo) |
 
 ## WordPress
 

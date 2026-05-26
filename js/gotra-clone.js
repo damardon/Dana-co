@@ -39,6 +39,19 @@
   fillMarquee("marquee-clients", clients);
   fillMarquee("marquee-tools", tools);
 
+  var slideshow = document.getElementById("heroSlideshow");
+  if (slideshow) {
+    var slides = slideshow.querySelectorAll("img");
+    var idx = 0;
+    if (slides.length > 1) {
+      setInterval(function () {
+        slides[idx].classList.remove("active");
+        idx = (idx + 1) % slides.length;
+        slides[idx].classList.add("active");
+      }, 4000);
+    }
+  }
+
   var menuBtn = document.getElementById("menuBtn");
   var overlay = document.getElementById("navOverlay");
   if (menuBtn && overlay) {

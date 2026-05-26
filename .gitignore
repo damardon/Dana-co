@@ -1,0 +1,7 @@
+# Video pesado — se sirve desde dana-co.cl o local sin versionar
+assets/video/*.mp4
+
+# Placeholders demo WPKoi (ya no se usan)
+assets/img/hero.webp
+assets/img/about-us-*.webp
+assets/img/gotra-8.webp

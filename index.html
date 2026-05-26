@@ -48,11 +48,20 @@
       <a href="#contacto" class="g-link" style="color:var(--g-text);border-color:var(--g-text)">Agendar conversación ejecutiva →</a>
     </div>
     <figure class="g-hero-visual">
-      <img src="assets/img/hero.webp" alt="Dana & Co — tecnología e IA" width="600" height="750" />
-      <figcaption>Patagonia · Chile · Operación global remota</figcaption>
+      <div class="g-hero-slideshow" id="heroSlideshow" aria-label="Galería Dana & Co">
+        <img src="assets/img/hero-slide-1.jpg" alt="Dana & Co — operaciones tecnológicas" class="active" width="600" height="750" />
+        <img src="assets/img/hero-slide-2.jpg" alt="Dana & Co — proyectos enterprise" width="600" height="750" />
+        <img src="assets/img/danaco.jpg" alt="Dana & Co" width="600" height="750" />
+      </div>
+      <figcaption>Patagonia · Chile · Operación global</figcaption>
     </figure>
     <span class="g-scroll-hint">scroll</span>
   </section>
+
+  <div class="g-logos-strip wrap">
+    <img src="assets/img/logo-experian.png" alt="Experian" height="36" />
+    <img src="assets/img/logo-codelco.png" alt="Codelco" height="36" />
+  </div>
 
   <div class="g-marquee-wrap">
     <p class="g-marquee-label">Organizaciones donde hemos liderado tecnología</p>
@@ -72,7 +81,7 @@
       </h2>
       <div class="g-authority">
         <div class="g-portrait">
-          <img src="assets/img/about-us-2.webp" alt="Dana Mardones — fundadora Dana & Co" width="480" height="640" />
+          <img src="assets/img/dana-mardones.png" alt="Dana Mardones — fundadora Dana & Co" width="480" height="640" />
           <div class="g-portrait-badge">15<small>años en operación</small></div>
         </div>
         <div>
@@ -102,6 +111,30 @@
     </div>
   </section>
 
+  <section class="g-video-section" id="video">
+    <div class="wrap reveal">
+      <div class="g-video-grid">
+        <div>
+          <h2 class="g-split light">
+            <span class="line">la misma</span>
+            <span class="line thin">exigencia</span>
+            <span class="line accent">en cámara...</span>
+          </h2>
+          <p class="g-intro">
+            Contenido real publicado en dana-co.cl: cómo pensamos la entrega, la gobernanza de proyectos y la adopción de IA en organizaciones que no tienen margen para el error.
+          </p>
+        </div>
+        <div class="g-video-wrap">
+          <video controls playsinline preload="metadata" poster="assets/img/danaco.jpg">
+            <source src="https://dana-co.cl/wp-content/uploads/2026/03/WIN_20251218_13_56_48_Pro.mp4" type="video/mp4" />
+            Tu navegador no reproduce video HTML5.
+          </video>
+          <span class="g-video-cap">Video · dana-co.cl</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="g-section dark" id="servicios">
     <div class="wrap reveal">
       <h2 class="g-split light">
@@ -123,7 +156,7 @@
             <span class="g-svc-cta"><a href="#studio-detail" style="color:inherit">Ver agentes y planes →</a></span>
           </div>
           <div class="g-svc-visual">
-            <img src="assets/img/gotra-8.webp" alt="Dana AI Studio — automatización" width="640" height="400" />
+            <img src="assets/img/studio-visual.png" alt="Dana AI Studio — automatización" width="640" height="400" />
           </div>
         </article>
         <article class="g-svc">
@@ -282,7 +315,7 @@
     <div class="g-cases">
       <article class="g-case">
         <div class="g-case-img">
-          <img src="assets/img/about-us-1.webp" alt="COPEC Muevo — plataforma digital" width="800" height="600" />
+          <img src="assets/img/case-copec.png" alt="COPEC Muevo — plataforma digital" width="800" height="600" />
         </div>
         <div class="g-case-body">
           <div class="g-case-meta">Energía · Defensa · SAP</div>
@@ -297,7 +330,7 @@
       </article>
       <article class="g-case">
         <div class="g-case-img">
-          <img src="assets/img/gotra-8.webp" alt="DERCO Sensor Inteligente IoT" width="800" height="600" />
+          <img src="assets/img/case-construction.jpg" alt="DERCO Sensor Inteligente IoT" width="800" height="600" />
         </div>
         <div class="g-case-body">
           <div class="g-case-meta">Automotriz · IoT · AWS</div>
@@ -312,7 +345,7 @@
       </article>
       <article class="g-case">
         <div class="g-case-img">
-          <img src="assets/img/hero.webp" alt="Codelco OPM3" width="800" height="600" />
+          <img src="assets/img/codelco.gif" alt="Codelco OPM3" width="800" height="600" />
         </div>
         <div class="g-case-body">
           <div class="g-case-meta">Minería · Gobernanza</div>
